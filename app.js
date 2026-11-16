@@ -91,7 +91,7 @@
     try { sessionStorage.setItem("gdh-guide", JSON.stringify(data)); } catch (e) {}
 
     var modeLabel = "Custom location sheet (write in local repeaters)";
-    var empty = '<p>Amateur repeater rows are left blank on purpose. This draft does not invent frequencies and does not call RepeaterBook. Look up nearby machines on RepeaterBook.com and write them on your sheet. NOAA Weather Radio for this county is filled in when the official NWS coverage file has a match.</p>';
+    var empty = '<p>Amateur repeater rows are left blank on purpose. We do not guess at frequencies. Look up nearby machines on RepeaterBook.com and write them on your sheet. NOAA Weather Radio for this county is filled in when the official NWS coverage file has a match.</p>';
     var nets = (data.nets && data.nets.length)
       ? "<h3>Verified local nets (this edition only)</h3>" + listHtml(data.nets)
       : "<h3>Local nets</h3><p>Nets are not auto-filled for a new address. Use the search links and write verified times on the printed sheet.</p>";
