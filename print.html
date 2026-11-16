@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid Down Radio Guide — print</title>
+  <link rel="icon" href="swrf-logo.png">
+  <style>
+    :root{--navy:#0b2545;--accent:#e4002b;--ink:#1d2433;--muted:#5a6475;--line:#dfe4ec}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.45;color:var(--ink);background:#fff}
+    header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--navy);color:#fff}
+    .logo{width:48px;height:48px;background:url(swrf-logo.png) center/contain no-repeat;flex:none}
+    header .org{font-weight:700;line-height:1.2}
+    header .org small{display:block;font-weight:400;font-size:12px;opacity:.85}
+    .wrap{max-width:900px;margin:0 auto;padding:20px}
+    h1{font-size:26px;margin:0 0 4px;color:var(--navy)}
+    h2{font-size:18px;margin:22px 0 8px;color:var(--navy);border-bottom:3px solid var(--accent);padding-bottom:4px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:8px;border:0;cursor:pointer;font:inherit}
+    .muted{color:var(--muted)}
+    .box{border:1px solid var(--line);border-left:6px solid var(--navy);padding:12px 14px;margin:0 0 14px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    th{background:var(--navy);color:#fff;text-align:left;padding:6px 7px}
+    td{border-bottom:1px solid var(--line);padding:6px 7px;vertical-align:top}
+    tr.noaa td{background:#eef6f1}
+    tr.blank td{background:#fafafa;color:#888}
+    ol{padding-left:1.2em}
+    .note{background:#fff8e6;border-left:6px solid #f2a900;padding:10px 12px}
+    footer{font-size:12px;color:var(--muted);margin-top:24px}
+    .error{padding:40px 20px}
+    @media print{
+      .toolbar{display:none}
+      header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+      a[href]:after{content:""}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" role="img" aria-label="Stormy Weather Response Force logo"></div>
+    <div class="org">Stormy Weather Response Force<small>Grid Down Radio Guide · www.stormywx.org</small></div>
+  </header>
+  <div class="wrap" id="page">
+    <p>No guide is ready to print. Go back and look up an address first.</p>
+    <p><a href="index.html">Return to Grid Down Ham</a></p>
+  </div>
+  <script>
+  (function () {
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+    function rows(list, blanks) {
+      var html = (list || []).map(function (r) {
+        return "<tr" + (r.kind === "noaa" ? ' class="noaa"' : "") + ">" +
+          "<td>" + esc(r.name) + "</td><td>" + esc(r.freq) + "</td><td>" + esc(r.offset) + "</td><td>" + esc(r.tone) + "</td>" +
+          "<td>" + esc(r.mode) + "</td><td>" + esc(r.location) + "</td><td>" + esc(r.gps) + "</td><td>" + esc(r.dist) + "</td></tr>";
+      }).join("");
+      for (var i = 0; i < (blanks || 0); i++) {
+        html += '<tr class="blank"><td colspan="8">Write in a frequency you have verified</td></tr>';
+      }
+      return '<table><thead><tr><th>Name / call</th><th>Frequency</th><th>Offset</th><th>Tone</th><th>Mode</th><th>Location</th><th>GPS</th><th>Dist / dir</th></tr></thead><tbody>' + html + "</tbody></table>";
+    }
+    var data = null;
+    try { data = JSON.parse(sessionStorage.getItem("gdh-guide") || "null"); } catch (e) { data = null; }
+    var page = document.getElementById("page");
+    if (!data || !data.ok) return;
+    var steps = [
+      ["Antenna on tight first, then power on.", "Transmitting without an antenna can damage the radio."],
+      ["Switch to frequency mode.", "Use the VFO or V/M button so you can type or tune a frequency."],
+      ["Set squelch, then listen first.", "Listen or scan before you transmit."],
+      ["Start on the national calling channels.", "146.520 MHz (2 meter) and 446.000 MHz (70 centimeter)."],
+      ["Press, pause, talk, release.", "Pause one second, talk 2 to 3 inches from the microphone, then release to listen."],
+      ["Make the call.", "Say “Mayday” three times for a life-threatening emergency, or “Emergency traffic.” Give name, location, what happened, how many people, and what you need. Repeat, then listen a full minute."],
+      ["If no one answers, improve your position and retry.", "Higher ground, antenna vertical, try again on a schedule, save battery."],
+      ["Local repeaters reach farther.", "Use the listed offset and tone."],
+      ["Other radios you may already have.", "FRS/GMRS may be used for emergency communications (FCC). CB channel 9 is reserved for emergencies or traveler assistance. NOAA Weather Radio is receive-only."]
+    ];
+    document.title = "Grid Down Radio Guide — " + (data.address_line || "");
+    page.innerHTML =
+      '<div class="toolbar"><button class="btn" type="button" onclick="window.print()">Print / save as PDF</button><a class="btn" href="index.html" style="background:#0b2545">Back</a></div>' +
+      "<h1>Grid Down Radio Guide</h1>" +
+      "<p>This copy is prepared for <b>" + esc(data.address_line || data.matched_address) + "</b></p>" +
+      '<div class="box"><p>' + esc(data.decimal) + "<br>" + esc(data.dms) + "</p>" +
+      "<p>" + esc(data.county_label || "") + (data.same_code ? " · SAME " + esc(data.same_code) : "") + "</p>" +
+      "<p class='muted'>" + esc(data.geocode_note || "") + "</p></div>" +
+      "<h2>If the grid is down — nine steps</h2><ol>" +
+      steps.map(function (s) { return "<li><b>" + s[0] + "</b> " + s[1] + "</li>"; }).join("") + "</ol>" +
+      "<h2>Mayday / emergency script</h2>" +
+      "<p>For a life-threatening emergency, say “Mayday” three times. For other urgent help, say “Emergency traffic.” Give your name and call sign if you have one, your location, what happened, how many people, whether anyone is injured, and what you need. Repeat the message, then listen a full minute.</p>" +
+      "<h2>Local frequencies</h2>" +
+      "<p>Amateur repeater rows are left blank. Look them up on RepeaterBook.com. Do not invent frequencies. Data courtesy of RepeaterBook.com when you consult that site.</p>" +
+      rows([].concat(data.repeaters || [], data.noaa || []), 4) +
+      ((data.other_bands && data.other_bands.length) ? "<h2>Other amateur bands</h2>" + rows(data.other_bands, 2) : "") +
+      "<h2>Local nets and emergency management</h2>" +
+      ((data.nets && data.nets.length) ? "<ul>" + data.nets.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>" : "<p>Look up your local ARES, RACES, and SKYWARN nets before you need them. Do not invent times or frequencies.</p>") +
+      ((data.em && data.em.lines && data.em.lines.length) ? "<ul>" + data.em.lines.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>" : "") +
+      "<ul>" + (data.lookup_links || []).map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>" +
+      '<div class="note"><p><b>Verify on the air.</b> An amateur license is required to transmit on amateur frequencies, except as provided in FCC 97.403. Listings can be out of date.</p></div>' +
+      "<footer>Stormy Weather Response Force · www.stormywx.org · " + esc(data.repeater_source || "") + "</footer>";
+  })();
+  </script>
+</body>
+</html>

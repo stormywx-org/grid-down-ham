@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid Down Ham: Radio Guide Lookup | Stormy Weather Response Force</title>
+  <meta name="description" content="Enter a U.S. address to get a Grid Down Radio Guide from Stormy Weather Response Force. Crash-course steps, a Mayday script, NOAA Weather Radio, and a printable sheet.">
+  <link rel="icon" href="swrf-logo.png">
+  <style>
+:root{--navy:#0b2545;--blue:#13315c;--accent:#e4002b;--ink:#1d2433;--muted:#5a6475;--bg:#f5f7fa;--card:#fff;--line:#dfe4ec}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:18px;line-height:1.6;color:var(--ink);background:var(--bg)}
+a{color:var(--blue)}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{background:var(--navy);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:12px;padding:12px 20px}
+.logo{background:url(swrf-logo.png) center/contain no-repeat}
+header.top .logo{width:52px;height:52px;flex:none}
+header.top .org{font-weight:700;line-height:1.2}
+header.top .org small{display:block;font-weight:400;opacity:.85;font-size:14px}
+header.top a{color:#fff;text-decoration:none}
+.hero{background:linear-gradient(160deg,var(--navy),var(--blue));color:#fff;padding:40px 0 48px}
+.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.15;margin:0 0 14px}
+.hero p{font-size:clamp(18px,3.6vw,21px);margin:0 0 22px;max-width:640px}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:20px;text-decoration:none;padding:16px 28px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.25);border:0;cursor:pointer;font-family:inherit}
+.btn:hover,.btn:focus{background:#b80023;outline:3px solid #fff;outline-offset:2px;color:#fff}
+.btn.block{display:block;text-align:center}
+.btn[disabled]{opacity:.65;cursor:wait}
+.btn.secondary{background:transparent;color:#fff;border:2px solid #fff;box-shadow:none}
+.btn.secondary:hover,.btn.secondary:focus{background:#fff;color:var(--navy)}
+.lookup{background:#fff;color:var(--ink);border-radius:12px;padding:18px 18px 16px;max-width:640px}
+.lookup label{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin:0 0 8px}
+.lookup-row{display:flex;flex-wrap:wrap;gap:10px}
+.lookup-row input[type=text]{flex:1 1 200px;min-width:0;font:inherit;font-size:18px;padding:14px 14px;border:1px solid var(--line);border-radius:10px}
+.lookup-row input[type=text]:focus{outline:3px solid #f2a900;outline-offset:1px;border-color:var(--navy)}
+.lookup .hint{margin:10px 0 0;font-size:14px;color:var(--muted)}
+section{padding:36px 0}
+section h2{font-size:clamp(24px,5vw,30px);color:var(--navy);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card p:first-child{margin-top:0}
+ol.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+ol.steps li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 18px 70px;position:relative}
+ol.steps li b{display:block;color:var(--navy)}
+ol.steps .n{position:absolute;left:18px;top:18px;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.note{border-left:6px solid #f2a900;background:#fff8e6}
+.note p{margin:0 0 10px}
+.note p:last-child{margin:0}
+.freq-grid{display:grid;gap:14px}
+.freq-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.freq-card .mhz{margin:0 0 4px;font-size:24px;font-weight:700;color:var(--navy)}
+.freq-card h3{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.freq-card p{margin:0;color:var(--muted);font-size:16px}
+.guide-grid{display:grid;gap:14px}
+.guide-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.guide-card h3{margin:0;color:var(--navy);font-size:20px}
+.guide-card .addr{font-weight:700}
+.guide-card p{margin:0;color:var(--muted);font-size:16px}
+.guide-card .btn{margin-top:12px;align-self:flex-start}
+.script{background:var(--navy);color:#fff;border-radius:12px;padding:22px 24px}
+.script h3{margin:0 0 12px;font-size:22px}
+.script ol{margin:0;padding-left:1.2em}
+.script li{margin:0 0 8px}
+.script .fine{margin:14px 0 0;color:#c9d4e5;font-size:16px}
+#results{display:none;padding-top:8px}
+#results.is-open{display:block}
+.results-head{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.results-head h2{margin:0}
+.badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#e8eef6;color:var(--navy);margin-bottom:8px}
+.badge.demo{background:#e4f0e7;color:#1b4d2b}
+.badge.blank{background:#fff8e6;color:#7a5a00}
+.dl{display:grid;gap:10px 24px;margin:0}
+.dl div dt{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin:0}
+.dl div dd{margin:0}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+table.freq{width:100%;border-collapse:collapse;font-size:14.5px;min-width:680px}
+table.freq th{text-align:left;background:var(--navy);color:#fff;font-weight:700;padding:8px 10px}
+table.freq td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.freq tr:nth-child(even) td{background:#f5f7fa}
+table.freq tr.noaa td{background:#eef6f1}
+.error{border-left:6px solid var(--accent);background:#fff1f3}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.actions .btn.secondary{color:var(--navy);border-color:var(--line)}
+.actions .btn.secondary:hover,.actions .btn.secondary:focus{background:var(--bg);color:var(--navy);outline-color:#f2a900}
+footer{background:var(--navy);color:#fff;text-align:center;padding:28px 20px}
+footer .logo{width:90px;height:90px;margin:0 auto}
+footer a{color:#fff;font-weight:700}
+footer p{margin:8px 0}
+footer .fine{font-size:15px;color:#c9d4e5;max-width:640px;margin:8px auto;font-weight:400}
+@media (min-width:720px){
+  ol.steps{grid-template-columns:1fr 1fr}
+  body{font-size:19px}
+  .freq-grid,.guide-grid,.dl{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .lookup-row .btn{width:100%}
+}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="logo" role="img" aria-label="Stormy Weather Response Force logo"></div>
+      <div class="org"><a href="https://www.stormywx.org">Stormy Weather Response Force</a><small>www.stormywx.org</small></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="wrap">
+      <h1>Grid Down Ham: Radio Guide Lookup</h1>
+      <p>Enter a U.S. street address. We will look it up and make a Grid Down Radio Guide you can read here or print.</p>
+      <form class="lookup" id="lookup-form">
+        <label for="address">U.S. street address</label>
+        <div class="lookup-row">
+          <input type="text" id="address" name="address" required autocomplete="street-address" placeholder="Street address, City, ST">
+          <button class="btn" type="submit" id="lookup-btn">Make my guide</button>
+        </div>
+        <p class="hint">U.S. addresses only (Census Geocoder). This is a local draft in the Floodline Recon format — it is not a public site yet. Verify listings on the air.</p>
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <section id="results">
+      <div class="wrap" id="results-inner"></div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>What it is</h2>
+        <div class="card">
+          <p>Grid Down Ham is a Stormy Weather Response Force (SWRF) resource. When phones and the internet are down, a handheld radio can still reach people. This page builds a one-family sheet for your address: the crash-course steps, a Mayday script, NOAA Weather Radio for your county, and a place for local repeater frequencies.</p>
+          <p style="margin:0">NOAA Weather Radio is filled in when the official NWS coverage file has a match for your county. Amateur repeater rows are left blank for you to write in from RepeaterBook or from what you confirm on the air.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2>How the lookup works</h2>
+        <ol class="steps">
+          <li><span class="n">1</span><b>Enter your address</b>A complete U.S. street address with city and state works best.</li>
+          <li><span class="n">2</span><b>We geocode it</b>The U.S. Census Bureau Geocoder finds the coordinates and county. If the match differs from what you typed, we say so.</li>
+          <li><span class="n">3</span><b>We fill what can be verified</b>NOAA Weather Radio comes from the official NWS county coverage file. Amateur repeater rows are left blank for you to write in.</li>
+          <li><span class="n">4</span><b>You print the sheet</b>Read it on this page, then print or save it as a PDF to keep with the radio.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="crash-course">
+      <div class="wrap">
+        <h2>If the grid is down — nine steps</h2>
+        <p style="margin:0 0 14px;color:var(--muted)">These are the same crash-course steps printed on page 1 of every Grid Down Radio Guide.</p>
+        <ol class="steps">
+          <li><span class="n">1</span><b>Antenna on tight first, then power on.</b>Transmitting without an antenna can damage the radio. Seat the antenna firmly before you turn the radio on.</li>
+          <li><span class="n">2</span><b>Switch to frequency mode.</b>Use the VFO or V/M button (the label varies by radio) so you can type or tune a frequency, not only saved channels.</li>
+          <li><span class="n">3</span><b>Set squelch, then listen first.</b>Turn squelch down until you hear static, then back up just until it is quiet. Listen or scan before you transmit.</li>
+          <li><span class="n">4</span><b>Start on the national calling channels.</b>146.520 MHz (2 meter) and 446.000 MHz (70 centimeter) are the ARRL national FM simplex calling frequencies. Simplex is radio-to-radio on the same frequency and works without a repeater.</li>
+          <li><span class="n">5</span><b>Press, pause, talk, release.</b>Press the transmit button, pause one second, talk slowly 2 to 3 inches from the microphone, then release to listen.</li>
+          <li><span class="n">6</span><b>Make the call.</b>For a life-threatening emergency, say “Mayday” three times. For other urgent help, say “Emergency traffic.” Give your name, location, what happened, how many people, and what you need. Repeat the message, then listen a full minute.</li>
+          <li><span class="n">7</span><b>If no one answers, improve your position and retry.</b>Move to higher ground, away from buildings, and keep the antenna vertical. Try again on a schedule, such as at the top of each hour, and save battery.</li>
+          <li><span class="n">8</span><b>Local repeaters reach farther.</b>Use the frequencies on your local sheet. A repeater needs the listed offset and tone; without them, your call may not go through.</li>
+          <li><span class="n">9</span><b>Other radios you may already have.</b>FRS and GMRS: any channel may be used for emergency communications (FCC); some groups pre-arrange channel 1 or 20 — confirm locally. CB channel 9 is reserved for emergency communications or traveler assistance. NOAA Weather Radio is receive-only.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="script">
+      <div class="wrap">
+        <h2>Mayday / emergency script</h2>
+        <div class="script">
+          <h3>Make the call</h3>
+          <ol>
+            <li>For a life-threatening emergency, say “Mayday” three times. For other urgent help, say “Emergency traffic.”</li>
+            <li>Give your name, and your call sign if you have one.</li>
+            <li>Give your location — address, crossroads, landmarks, or GPS.</li>
+            <li>Say what happened.</li>
+            <li>Say how many people are with you, and whether anyone is injured.</li>
+            <li>Say what you need.</li>
+            <li>Repeat the message, then listen a full minute before trying again.</li>
+          </ol>
+          <p class="fine">Press the transmit button, pause one second, talk 2 to 3 inches from the microphone, then release to listen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="frequencies">
+      <div class="wrap">
+        <h2>Key simplex and emergency frequencies</h2>
+        <div class="freq-grid">
+          <article class="freq-card">
+            <p class="mhz">146.520</p>
+            <h3>2-meter national FM simplex calling</h3>
+            <p>ARRL national calling frequency. Radio-to-radio, no repeater required. Listen first.</p>
+          </article>
+          <article class="freq-card">
+            <p class="mhz">446.000</p>
+            <h3>70-centimeter national FM simplex calling</h3>
+            <p>ARRL national calling frequency on the 70 cm band. Listen first, then make a short, clear call.</p>
+          </article>
+          <article class="freq-card">
+            <p class="mhz">FRS / GMRS</p>
+            <h3>Any channel may be used in an emergency</h3>
+            <p>The FCC allows emergency communications on FRS and GMRS. Some groups pre-arrange channel 1 or 20 — confirm locally.</p>
+          </article>
+          <article class="freq-card">
+            <p class="mhz">CB 9 · NOAA</p>
+            <h3>CB channel 9 and weather radio</h3>
+            <p>CB channel 9 is reserved for emergency communications or traveler assistance. NOAA Weather Radio (162.400–162.550 MHz) is receive-only.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="license">
+      <div class="wrap">
+        <h2>How to get licensed</h2>
+        <div class="card">
+          <p>An amateur radio license is required to transmit on amateur frequencies. FCC rule 97.403 provides that no Part 97 rule prevents an amateur station from using any means of radiocommunication at its disposal to provide essential communication needs in connection with the immediate safety of human life and immediate protection of property when normal communication systems are not available.</p>
+          <p style="margin:0">Get a Technician license before you need it. Study at <a href="https://hamstudy.org">HamStudy.org</a> and find an exam session through the <a href="https://www.arrl.org">ARRL</a>. The entry-level Technician exam is a multiple-choice written test; there is no Morse-code requirement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="data">
+      <div class="wrap">
+        <div class="card note">
+          <p><b>Good to know — verify on the air</b></p>
+          <p>Addresses are geocoded with the U.S. Census Bureau Geocoder (Public Address Ranges — Current Benchmark). This tool is for U.S. addresses only.</p>
+          <p>NOAA Weather Radio stations come from the official National Weather Service county coverage file (CCL.js) that feeds <a href="https://www.weather.gov/nwr/counties">weather.gov/nwr/counties</a>. Reception depends on terrain; confirm you can hear the station.</p>
+          <p>Amateur repeater listings are not invented. Repeater rows stay blank unless an approved RepeaterBook Export API is later configured. Look up nearby machines on <a href="https://www.repeaterbook.com">RepeaterBook.com</a> and write them in. When RepeaterBook data is used, attribution is: Data courtesy of RepeaterBook.com. Listings can be out of date — verify on the air.</p>
+          <p>Local ARES nets, SKYWARN times, and emergency-management contacts cannot be reliably auto-verified for a new address. The generated sheet gives search links and blank rows.</p>
+          <p style="margin:0">Your address is used only to build the sheet. This draft does not publish lookups. If a logging sheet is added later, it would be a private SWRF spreadsheet, not a public directory.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo" role="img" aria-label="Stormy Weather Response Force logo"></div>
+    <p><b>Stormy Weather Response Force (SWRF)</b></p>
+    <p><a href="https://www.stormywx.org">www.stormywx.org</a></p>
+    <p class="fine">Grid Down Ham is an SWRF resource. This page is a local draft in the same format as Floodline Recon and has not been published as a public site.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
